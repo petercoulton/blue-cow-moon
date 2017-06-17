@@ -1,0 +1,27 @@
+dependencies {
+  compile("org.springframework.boot:spring-boot-starter-web")
+  compile("org.springframework.boot:spring-boot-starter-hateoas")
+  compile("org.springframework.boot:spring-boot-starter-actuator")
+
+  compileOnly("org.springframework.boot:spring-boot-configuration-processor")
+}
+
+processResources {
+  from("src/main/resources") {
+    include "**/*.properties"
+    include "**/*.yml"
+    filter {
+      it.replace("BLUE_COW_MOON_VERSION", project.version.toString())
+    }
+  }
+}
+
+compileJava {
+  dependsOn processResources
+}
+
+jar {
+  manifest {
+    attributes("Implementation-Version": project.version.toString())
+  }
+}

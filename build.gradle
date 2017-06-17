@@ -20,6 +20,7 @@ plugins {
 }
 
 allprojects {
+  apply plugin: "jacoco"
   apply plugin: "idea"
 
   repositories {
@@ -60,6 +61,11 @@ configure(subprojects) {
 
   dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test")
+  }
+  
+  tasks.withType(Test) { task ->
+      reports.html.setDestination(file("${reporting.baseDir}/test/${task.name}"))
+      jacocoTestReport.executionData += files("$buildDir/jacoco/${task.name}.exec")
   }
   
   checkstyle {

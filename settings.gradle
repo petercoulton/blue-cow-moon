@@ -1,2 +1,3 @@
 rootProject.name = 'bluecowmoon'
 
+include 'bluecowmoon-web'

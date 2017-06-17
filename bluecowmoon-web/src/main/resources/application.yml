@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: blue-cow-moon
+
+info:
+  blue-cow-moon:
+    version: BLUE_COW_MOON_VERSION
+
