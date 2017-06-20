@@ -1,3 +1,4 @@
 rootProject.name = 'bluecowmoon'
 
 include 'bluecowmoon-web'
+include 'bluecowmoon-docs'
