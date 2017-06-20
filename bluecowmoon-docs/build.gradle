@@ -1,0 +1,8 @@
+apply plugin: "org.asciidoctor.convert"
+
+rootProject.tasks.collectDocumentation.dependsOn project.tasks.asciidoctor
+
+asciidoctor {
+  inputs.dir new File(project.projectDir, "/src/docs/asciidoc")
+  attributes "revnumber": project.version.toString()
+}

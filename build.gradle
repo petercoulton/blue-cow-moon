@@ -7,6 +7,7 @@ buildscript {
   }
 
   dependencies {
+    classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}")
     classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17")
     classpath("org.ajoberstar:gradle-git:1.7.2")
@@ -39,7 +40,9 @@ idea {
   }
 }
 
-configure(subprojects) {
+def jvmProjects = subprojects - project(":bluecowmoon-docs")
+
+configure(jvmProjects) {
   apply plugin: "java"
   apply plugin: "checkstyle"
   apply plugin: "findbugs"
@@ -56,6 +59,9 @@ configure(subprojects) {
     imports {
       mavenBom "io.spring.platform:platform-bom:${spring_platform_version}"
       mavenBom "org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}"
+    }
+  
+    dependencies {
     }
   }
 
@@ -78,6 +84,22 @@ configure(subprojects) {
   }
 }
 
+task collectDocumentation() {
+  def restDocs = new File(project(":bluecowmoon-web").buildDir, "asciidoc/html5")
+  def referenceDocs = new File(project(":bluecowmoon-docs").buildDir, "asciidoc/html5")
+  def docsDir = new File(project.buildDir, "docs")
+  
+  doLast {
+    copy {
+      from restDocs
+      into new File(docsDir, "rest")
+    }
+    copy {
+      from referenceDocs
+      into new File(docsDir, "reference")
+    }
+  }
+}
 
 task wrapper(type: Wrapper) {
   gradleVersion = '4.0'
