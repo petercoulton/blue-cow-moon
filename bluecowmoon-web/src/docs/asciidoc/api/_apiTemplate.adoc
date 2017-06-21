@@ -1,0 +1,14 @@
+
+= Query Parameters
+ifdef::request-parameters[]
+include::{request-parameters}[leveloffset=+1]
+endif::request-parameters[]
+ifndef::request-parameters[]
+None
+endif::request-parameters[]
+
+= Request
+include::{http-request}[leveloffset=+1]
+
+= Response
+include::{http-response}[leveloffset=+1]
