@@ -87,6 +87,10 @@ configure(jvmProjects) {
     configFile = rootProject.file("codequality/checkstyle/checkstyle.xml")
   }
   
+  findbugs {
+    excludeFilter = new File(project.parent.projectDir, "codequality/findbugs/excludeFilter.xml")
+  }
+  
   tasks.withType(Pmd) {
     reports.html.enabled = true
   }
