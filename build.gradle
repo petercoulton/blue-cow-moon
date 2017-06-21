@@ -70,6 +70,12 @@ configure(jvmProjects) {
         entry "kotlin-test"
         entry "kotlin-test-junit"
       }
+  
+      dependencySet(group: "io.springfox", version: "2.7.0") {
+        entry "springfox-swagger2"
+        entry "springfox-swagger-ui"
+        entry "springfox-bean-validators"
+      }
     }
   }
 
