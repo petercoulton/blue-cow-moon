@@ -1,0 +1,14 @@
+= Blue Cow Moon REST API Guide
+:toc: left
+:toclevels: 2
+:doctype: book
+:sectanchors:
+:sectlinks:
+:sectnums:
+:linkattrs:
+:icons: font
+:source-highlighter: highlight.js
+
+== Introduction
+
+include::api/names/_api.adoc[leveloffset=+1]

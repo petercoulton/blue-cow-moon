@@ -1,0 +1,124 @@
+buildscript {
+  repositories {
+    jcenter()
+    maven {
+      url "http://repo.spring.io/milestone"
+    }
+  }
+
+  dependencies {
+    classpath("org.asciidoctor:asciidoctor-gradle-plugin:1.5.3")
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}")
+    classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17")
+    classpath("org.ajoberstar:gradle-git:1.7.2")
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
+  }
+}
+
+plugins {
+  id "io.spring.dependency-management" version "1.0.3.RELEASE"
+  id "org.ajoberstar.grgit" version "1.7.2"
+  id "org.ajoberstar.release-opinion" version "1.7.2"
+}
+
+allprojects {
+  apply plugin: "jacoco"
+  apply plugin: "idea"
+
+  repositories {
+    jcenter()
+    maven {
+      url "http://repo.spring.io/milestone"
+    }
+  }
+}
+
+idea {
+  project {
+    jdkName = "1.8"
+    languageLevel = "1.8"
+    vcs = "Git"
+  }
+}
+
+def jvmProjects = subprojects - project(":bluecowmoon-docs")
+
+configure(jvmProjects) {
+  apply plugin: "java"
+  apply plugin: "checkstyle"
+  apply plugin: "findbugs"
+  apply plugin: "pmd"
+  apply plugin: "io.spring.dependency-management"
+  apply plugin: "com.gorylenko.gradle-git-properties"
+
+  group "com.petercoulton.bluecowmoon"
+
+  sourceCompatibility = 1.8
+  targetCompatibility = 1.8
+
+  dependencyManagement {
+    imports {
+      mavenBom "io.spring.platform:platform-bom:${spring_platform_version}"
+      mavenBom "org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}"
+    }
+  
+    dependencies {
+      dependencySet(group: "org.jetbrains.kotlin", version: "${kotlin_version}") {
+        entry "kotlin-stdlib"
+        entry "kotlin-stdlib-jre8"
+        entry "kotlin-reflect"
+        entry "kotlin-test"
+        entry "kotlin-test-junit"
+      }
+  
+      dependencySet(group: "io.springfox", version: "2.7.0") {
+        entry "springfox-swagger2"
+        entry "springfox-swagger-ui"
+        entry "springfox-bean-validators"
+      }
+    }
+  }
+
+  dependencies {
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+  }
+  
+  tasks.withType(Test) { task ->
+      reports.html.setDestination(file("${reporting.baseDir}/test/${task.name}"))
+      jacocoTestReport.executionData += files("$buildDir/jacoco/${task.name}.exec")
+  }
+  
+  checkstyle {
+    toolVersion = "7.8.1"
+    configFile = rootProject.file("codequality/checkstyle/checkstyle.xml")
+  }
+  
+  findbugs {
+    excludeFilter = new File(project.parent.projectDir, "codequality/findbugs/excludeFilter.xml")
+  }
+  
+  tasks.withType(Pmd) {
+    reports.html.enabled = true
+  }
+}
+
+task collectDocumentation() {
+  def restDocs = new File(project(":bluecowmoon-web").buildDir, "asciidoc/html5")
+  def referenceDocs = new File(project(":bluecowmoon-docs").buildDir, "asciidoc/html5")
+  def docsDir = new File(project.buildDir, "docs")
+  
+  doLast {
+    copy {
+      from restDocs
+      into new File(docsDir, "rest")
+    }
+    copy {
+      from referenceDocs
+      into new File(docsDir, "reference")
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = '4.0'
+}

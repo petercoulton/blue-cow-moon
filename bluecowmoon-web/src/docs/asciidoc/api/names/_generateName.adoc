@@ -1,0 +1,8 @@
+= Generate a new name
+
+:snippet-base: {snippets}/names-rest-controller-integration-tests/generates-names/1
+:request-parameters: {snippet-base}/request-parameters.adoc
+:http-request: {snippet-base}/http-request.adoc
+:http-response: {snippet-base}/http-response.adoc
+
+include::../_apiTemplate.adoc[leveloffset=+1]

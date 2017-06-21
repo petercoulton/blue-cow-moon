@@ -1,0 +1,16 @@
+
+
+
+
+
+      ${AnsiColor.BRIGHT_BLUE}8""""8                       ${AnsiColor.CYAN}         __n__n__    ${AnsiColor.BRIGHT_WHITE}8""8""8                  ${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}8    8   e     e   e eeee    ${AnsiColor.CYAN}  .------`-\00/-'    ${AnsiColor.BRIGHT_WHITE}8  8  8 eeeee eeeee eeeee${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}8eeee8ee 8     8   8 8       ${AnsiColor.CYAN} /  ##  ## (oo)      ${AnsiColor.BRIGHT_WHITE}8e 8  8 8  88 8  88 8   8${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}88     8 8e    8e  8 8eee    ${AnsiColor.CYAN}/ \## __   ./        ${AnsiColor.BRIGHT_WHITE}88 8  8 8   8 8   8 8e  8${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}88     8 88    88  8 88      ${AnsiColor.CYAN}   |//YY \|/         ${AnsiColor.BRIGHT_WHITE}88 8  8 8   8 8   8 88  8${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}88eeeee8 88eee 88ee8 88ee    ${AnsiColor.CYAN}   |||   |||         ${AnsiColor.BRIGHT_WHITE}88 8  8 8eee8 8eee8 88  8${AnsiColor.DEFAULT}
+
+
+         Blue Cow Moon Version: ${AnsiColor.BRIGHT_YELLOW}${application.version}${AnsiColor.DEFAULT}
+         Spring Boot Version:   ${AnsiColor.BRIGHT_YELLOW}${spring-boot.version}${AnsiColor.DEFAULT}
+
