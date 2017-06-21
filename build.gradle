@@ -11,6 +11,7 @@ buildscript {
     classpath("org.springframework.boot:spring-boot-gradle-plugin:${spring_boot_version}")
     classpath("gradle.plugin.com.gorylenko.gradle-git-properties:gradle-git-properties:1.4.17")
     classpath("org.ajoberstar:gradle-git:1.7.2")
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}"
   }
 }
 
@@ -62,6 +63,13 @@ configure(jvmProjects) {
     }
   
     dependencies {
+      dependencySet(group: "org.jetbrains.kotlin", version: "${kotlin_version}") {
+        entry "kotlin-stdlib"
+        entry "kotlin-stdlib-jre8"
+        entry "kotlin-reflect"
+        entry "kotlin-test"
+        entry "kotlin-test-junit"
+      }
     }
   }
 
@@ -77,6 +85,10 @@ configure(jvmProjects) {
   checkstyle {
     toolVersion = "7.8.1"
     configFile = rootProject.file("codequality/checkstyle/checkstyle.xml")
+  }
+  
+  findbugs {
+    excludeFilter = new File(project.parent.projectDir, "codequality/findbugs/excludeFilter.xml")
   }
   
   tasks.withType(Pmd) {
