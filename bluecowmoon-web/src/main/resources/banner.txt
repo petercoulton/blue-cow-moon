@@ -3,7 +3,7 @@
 
 
 
-      ${AnsiColor.BRIGHT_BLUE}8""""8                       ${AnsiColor.CYAN}         __n__n__    ${AnsiColor.BRIGHT_WHITE}8""8""8                  ${AnsiColor.DEFAULT}
+      ${AnsiColor.BRIGHT_BLUE}8""""8                       ${AnsiColor.CYAN}         __n__n__    ${AnsiColor.BRIGHT_WHITE}8""8""8${AnsiColor.DEFAULT}
       ${AnsiColor.BRIGHT_BLUE}8    8   e     e   e eeee    ${AnsiColor.CYAN}  .------`-\00/-'    ${AnsiColor.BRIGHT_WHITE}8  8  8 eeeee eeeee eeeee${AnsiColor.DEFAULT}
       ${AnsiColor.BRIGHT_BLUE}8eeee8ee 8     8   8 8       ${AnsiColor.CYAN} /  ##  ## (oo)      ${AnsiColor.BRIGHT_WHITE}8e 8  8 8  88 8  88 8   8${AnsiColor.DEFAULT}
       ${AnsiColor.BRIGHT_BLUE}88     8 8e    8e  8 8eee    ${AnsiColor.CYAN}/ \## __   ./        ${AnsiColor.BRIGHT_WHITE}88 8  8 8   8 8   8 8e  8${AnsiColor.DEFAULT}

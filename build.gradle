@@ -46,7 +46,7 @@ def jvmProjects = subprojects - project(":bluecowmoon-docs")
 configure(jvmProjects) {
   apply plugin: "java"
   apply plugin: "checkstyle"
-  apply plugin: "findbugs"
+//  apply plugin: "findbugs"
   apply plugin: "pmd"
   apply plugin: "io.spring.dependency-management"
   apply plugin: "com.gorylenko.gradle-git-properties"
@@ -61,8 +61,11 @@ configure(jvmProjects) {
       mavenBom "io.spring.platform:platform-bom:${spring_platform_version}"
       mavenBom "org.springframework.cloud:spring-cloud-dependencies:${spring_cloud_version}"
     }
+    
   
     dependencies {
+      dependency("org.slf4j:slf4j-api:1.7.25")
+
       dependencySet(group: "org.jetbrains.kotlin", version: "${kotlin_version}") {
         entry "kotlin-stdlib"
         entry "kotlin-stdlib-jre8"
@@ -80,6 +83,8 @@ configure(jvmProjects) {
   }
 
   dependencies {
+    compile("org.slf4j:slf4j-api")
+    
     testCompile("org.springframework.boot:spring-boot-starter-test")
   }
   
@@ -93,9 +98,9 @@ configure(jvmProjects) {
     configFile = rootProject.file("codequality/checkstyle/checkstyle.xml")
   }
   
-  findbugs {
-    excludeFilter = new File(project.parent.projectDir, "codequality/findbugs/excludeFilter.xml")
-  }
+//  findbugs {
+//    excludeFilter = new File(project.parent.projectDir, "codequality/findbugs/excludeFilter.xml")
+//  }
   
   tasks.withType(Pmd) {
     reports.html.enabled = true

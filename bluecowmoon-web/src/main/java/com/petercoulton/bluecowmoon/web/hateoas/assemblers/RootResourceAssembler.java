@@ -2,6 +2,7 @@ package com.petercoulton.bluecowmoon.web.hateoas.assemblers;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.petercoulton.bluecowmoon.web.controllers.NamesRestController;
+import com.petercoulton.bluecowmoon.web.controllers.ShortUrlsRestController;
 import com.petercoulton.bluecowmoon.web.hateoas.resources.RootResource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,9 @@ public class RootResourceAssembler implements ResourceAssembler<JsonNode, RootRe
         final RootResource rootResource = new RootResource(metadata);
         rootResource.add(
                 ControllerLinkBuilder.linkTo(NamesRestController.class).withRel("names")
+        );
+        rootResource.add(
+                ControllerLinkBuilder.linkTo(ShortUrlsRestController.class).withRel("short-urls")
         );
         return rootResource;
     }

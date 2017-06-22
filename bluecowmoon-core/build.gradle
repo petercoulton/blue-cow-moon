@@ -2,6 +2,9 @@ apply plugin: "kotlin"
 
 dependencies {
   compile "org.jetbrains.kotlin:kotlin-stdlib-jre8"
+  compile("org.springframework.boot:spring-boot-starter-hateoas")
+  compile "org.springframework.boot:spring-boot-starter-data-mongodb"
+  compile "de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0"
   
   testCompile "org.jetbrains.kotlin:kotlin-test"
   testCompile "org.jetbrains.kotlin:kotlin-test-junit"

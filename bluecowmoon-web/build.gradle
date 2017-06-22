@@ -11,6 +11,7 @@ dependencies {
   compile("org.springframework.boot:spring-boot-starter-web")
   compile("org.springframework.boot:spring-boot-starter-hateoas")
   compile("org.springframework.boot:spring-boot-starter-actuator")
+  compile("org.springframework.data:spring-data-commons")
   
   compile("io.springfox:springfox-swagger2")
   compile("io.springfox:springfox-swagger-ui")
