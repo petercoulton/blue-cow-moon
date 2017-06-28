@@ -6,12 +6,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.io.InputStream;
+
 @Configuration
 public class NameGeneratorConfiguration {
     private static final Logger log = LoggerFactory.getLogger(NameGeneratorConfiguration.class);
 
     @Bean
     public NameGenerator nameGenerator() {
-        return NameGenerator.Builder.fromResourceFile("words");
+        final InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("words");
+        return NameGenerator.Builder.fromInputStream(inputStream);
     }
 }
