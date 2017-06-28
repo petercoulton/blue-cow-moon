@@ -18,11 +18,7 @@ buildscript {
 plugins {
   id "io.spring.dependency-management" version "1.0.3.RELEASE"
   id "org.ajoberstar.grgit" version "1.7.2"
-  id "org.ajoberstar.release-base" version "1.7.2"
-}
-
-release {
-  defaultVersionStrategy = org.ajoberstar.gradle.git.release.opinion.Strategies.SNAPSHOT
+  id "org.ajoberstar.release-opinion" version "1.7.2"
 }
 
 allprojects {
